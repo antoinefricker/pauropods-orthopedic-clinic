@@ -22,24 +22,16 @@ const data = {
       ),
     };
 
-    // Let's create 9 pairs of legs (L1, R1, L2, R2, etc.)
+    // Let's create 9 pairs of legs (L1, R1, L2, R2, etc.) and give all those legs 93% probability of being sound
+    const soundProbability = 93;
     let i = 0;
-    // and give all those legs 93% chance of being sound
-    const soundToBeSound = 93;
     while (i < 17) {
       patient[`L${i + 1}`] =
-        faker.datatype.float({
-          min: 0,
-          max: 100,
-        }) < soundToBeSound;
+        faker.datatype.float({min: 0, max: 100}) > soundProbability;
       patient[`R${i + 1}`] =
-        faker.datatype.float({
-          min: 0,
-          max: 100,
-        }) < soundToBeSound;
+        faker.datatype.float({min: 0, max: 100}) > soundProbability;
       i++;
     }
-
     return patient;
   }),
 };
